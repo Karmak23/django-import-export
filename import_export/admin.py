@@ -389,6 +389,9 @@ class ExportActionModelAdmin(ExportMixin, admin.ModelAdmin):
         """
         export_format = request.POST.get('file_format', base_formats.CSV)
 
+        if export_format == '':
+            export_format = base_formats.CSV
+
         if not export_format:
             messages.warning(request, _('You must select an export format.'))
         else:
